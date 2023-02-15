@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
       home: PageView(
         children: const [
           HomePage(),
-          HomePage(),
         ],
       ),
     );

@@ -5,4 +5,5 @@ class Collors {
   static Color blueAccent = Colors.lightBlueAccent;
   static Color blue = const Color.fromRGBO(123, 163, 227, 1);
   static Color white = Colors.white;
+  static Color green = const Color.fromRGBO(153, 204, 51, 1);
 }
