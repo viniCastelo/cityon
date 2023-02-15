@@ -1,4 +1,5 @@
 // import 'package:cityon/utils/colors/collors.dart';
+import 'package:cityon/utils/colors/collors.dart';
 import 'package:cityon/views/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +12,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ThemeData().colorScheme.copyWith(
+              primary: Collors.blue,
+              secondary: Collors.blue,
+            ),
+        scaffoldBackgroundColor: Collors.backgroundPage,
+      ),
       home: PageView(
         children: const [
+          HomePage(),
           HomePage(),
         ],
       ),

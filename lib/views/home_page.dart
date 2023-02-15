@@ -29,9 +29,10 @@ class HomePage extends StatelessWidget {
             Image.asset(
               'assets/img/logo.png',
               fit: BoxFit.contain,
+              width: 80.0,
             ),
             const CircleAvatar(
-              radius: 25.0,
+              radius: 30.0,
               backgroundImage: AssetImage('assets/img/avatar.png'),
             ),
           ],
