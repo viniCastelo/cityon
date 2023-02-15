@@ -1,7 +1,9 @@
-// ignore_for_file: avoid_unnecessary_containers
+// ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'package:cityon/utils/colors/collors.dart';
 import 'package:cityon/widgets/carousel/carousel.dart';
+import 'package:cityon/widgets/service_category/service_category.dart';
+import 'package:cityon/widgets/widget_area/widget_area.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -59,7 +61,123 @@ class HomePage extends StatelessWidget {
           height: size,
           width: MediaQuery.of(context).size.width,
         ),
+        WidgetArea(
+          title: Center(
+            child: Text(
+              'Pesquisa de Serviços',
+              style: TextStyle(
+                color: Collors.greyDark,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          padding: const EdgeInsets.all(20.0),
+          child: _searchTextField(),
+        ),
+        WidgetArea(
+          title: Text(
+            'Serviços disponíveis',
+            style: TextStyle(
+              color: Collors.greyDark,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          padding: const EdgeInsets.only(left: 20.0),
+          child: _listServices(),
+        ),
       ],
+    );
+  }
+
+  Widget _searchTextField() {
+    return TextFormField(
+      decoration: const InputDecoration(
+        prefix: SizedBox(width: 20.0),
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        ),
+        hintText: 'Ex: eletricista, mecânico, pedreiro ...',
+        hintStyle: TextStyle(
+          color: Colors.grey,
+        ),
+        suffixIcon: Padding(
+          padding: EdgeInsets.only(right: 20.0),
+          child: Icon(Icons.search),
+        ),
+      ),
+    );
+  }
+
+  Widget _listServices() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ServiceCategory(
+            title: 'Barbearia',
+            icon: Icon(
+              Icons.cut_rounded,
+              color: Collors.red,
+            ),
+            color: Collors.redAccent,
+            borderColor: Collors.red,
+          ),
+          ServiceCategory(
+            title: 'Eventos',
+            icon: Icon(
+              Icons.celebration_outlined,
+              color: Collors.orange,
+            ),
+            color: Collors.orangeAccent,
+            borderColor: Collors.orange,
+          ),
+          ServiceCategory(
+            title: 'Contabilidade',
+            icon: Icon(
+              Icons.bar_chart_sharp,
+              color: Collors.yellow,
+            ),
+            color: Collors.yellowAccent,
+            borderColor: Collors.yellow,
+          ),
+          ServiceCategory(
+            title: 'Jardinagem',
+            icon: Icon(
+              Icons.yard_outlined,
+              color: Collors.green,
+            ),
+            color: Collors.greenAccent,
+            borderColor: Collors.green,
+          ),
+          ServiceCategory(
+            title: 'Mecânica',
+            icon: Icon(
+              Icons.handyman_outlined,
+              color: Collors.blueBold,
+            ),
+            color: Collors.blueAccent,
+            borderColor: Collors.blueBold,
+          ),
+          ServiceCategory(
+            title: 'Limpeza',
+            icon: Icon(
+              Icons.cleaning_services,
+              color: Collors.purple,
+            ),
+            color: Collors.purpleAccent,
+            borderColor: Collors.purple,
+          ),
+          const ServiceCategory(
+            title: 'Ver mais',
+            icon: Icon(Icons.add),
+          ),
+        ],
+      ),
     );
   }
 }
