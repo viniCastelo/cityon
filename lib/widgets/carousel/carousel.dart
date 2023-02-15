@@ -27,14 +27,14 @@ class Carousel extends StatelessWidget {
             alignment: AlignmentDirectional.topEnd,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 2.0, right: 10.0),
+                padding: const EdgeInsets.only(top: 2.0, right: 20.0),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(80.0, 30.0),
                     backgroundColor: Collors.white,
                     side: BorderSide(
                       color: Collors.green,
-                      width: 1.5,
                     ),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -45,6 +45,7 @@ class Carousel extends StatelessWidget {
                     'ANUNCIAR',
                     style: TextStyle(
                       color: Collors.green,
+                      fontSize: 12.0,
                     ),
                   ),
                 ),

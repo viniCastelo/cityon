@@ -2,6 +2,7 @@
 
 import 'package:cityon/utils/colors/collors.dart';
 import 'package:cityon/widgets/carousel/carousel.dart';
+import 'package:cityon/widgets/professionals_card/professionals_card.dart';
 import 'package:cityon/widgets/service_category/service_category.dart';
 import 'package:cityon/widgets/widget_area/widget_area.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +28,9 @@ class HomePage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(
         top: 40.0,
-        right: 10.0,
+        right: 20.0,
         bottom: 10.0,
-        left: 10.0,
+        left: 20.0,
       ),
       decoration: BoxDecoration(
         color: Collors.blue,
@@ -87,26 +88,54 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20.0),
           child: _listServices(),
         ),
+        WidgetArea(
+          title: Text(
+            'Os melhores profissionais',
+            style: TextStyle(
+              color: Collors.greyDark,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          padding: const EdgeInsets.only(top: 20.0, left: 20.0),
+          child: _listBestProfessionals(),
+        ),
+        WidgetArea(
+          title: Text(
+            'Empresas mais pesquisadas',
+            style: TextStyle(
+              color: Collors.greyDark,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          padding: const EdgeInsets.all(20.0),
+          child: _listBestCompanies(),
+        ),
       ],
     );
   }
 
   Widget _searchTextField() {
-    return TextFormField(
-      decoration: const InputDecoration(
-        prefix: SizedBox(width: 20.0),
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-        ),
-        hintText: 'Ex: eletricista, mecânico, pedreiro ...',
-        hintStyle: TextStyle(
-          color: Colors.grey,
-        ),
-        suffixIcon: Padding(
-          padding: EdgeInsets.only(right: 20.0),
-          child: Icon(Icons.search),
+    return SizedBox(
+      height: 55.0,
+      child: TextFormField(
+        decoration: const InputDecoration(
+          prefix: SizedBox(width: 20.0),
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          ),
+          hintText: 'Ex: eletricista, mecânico, pedreiro ...',
+          hintStyle: TextStyle(
+            height: 1.0,
+            color: Colors.grey,
+          ),
+          suffixIcon: Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: Icon(Icons.search),
+          ),
         ),
       ),
     );
@@ -175,6 +204,93 @@ class HomePage extends StatelessWidget {
           const ServiceCategory(
             title: 'Ver mais',
             icon: Icon(Icons.add),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _listBestProfessionals() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Card(
+            elevation: 0,
+            color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
+              child: Text('Teste'),
+            ),
+          ),
+          SizedBox(width: 10.0),
+          Card(
+            elevation: 0,
+            color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
+              child: Text('Teste'),
+            ),
+          ),
+          SizedBox(width: 10.0),
+          Card(
+            elevation: 0,
+            color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
+              child: Text('Teste'),
+            ),
+          ),
+          SizedBox(width: 10.0),
+        ],
+      ),
+    );
+  }
+
+  Widget _listBestCompanies() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: double.maxFinite,
+            child: const Card(
+              elevation: 0,
+              color: Colors.white,
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
+                child: Text('Teste'),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          Container(
+            width: double.maxFinite,
+            child: const Card(
+              elevation: 0,
+              color: Colors.white,
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
+                child: Text('Teste'),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          Container(
+            width: double.maxFinite,
+            child: const Card(
+              elevation: 0,
+              color: Colors.white,
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
+                child: Text('Teste'),
+              ),
+            ),
           ),
         ],
       ),
