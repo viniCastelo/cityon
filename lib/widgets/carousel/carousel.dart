@@ -24,10 +24,10 @@ class Carousel extends StatelessWidget {
       child: PageView(
         children: [
           Stack(
-            alignment: AlignmentDirectional.topEnd,
+            alignment: AlignmentDirectional.topCenter,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 2.0, right: 20.0),
+                padding: const EdgeInsets.only(top: 15.0),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(

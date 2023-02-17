@@ -2,7 +2,6 @@
 
 import 'package:cityon/utils/colors/collors.dart';
 import 'package:cityon/widgets/carousel/carousel.dart';
-import 'package:cityon/widgets/professionals_card/professionals_card.dart';
 import 'package:cityon/widgets/service_category/service_category.dart';
 import 'package:cityon/widgets/widget_area/widget_area.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +18,7 @@ class HomePage extends StatelessWidget {
         child: _appBar(context),
       ),
       body: SingleChildScrollView(
+        reverse: true,
         child: _body(context),
       ),
     );
@@ -34,19 +34,41 @@ class HomePage extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: Collors.blue,
+        /*
+        boxShadow: [
+          BoxShadow(
+            color: Collors.blue,
+            spreadRadius: 1.5,
+            blurRadius: 8.0,
+          ),
+        ],
+        */
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            'assets/img/logo.png',
-            fit: BoxFit.contain,
-            width: 80.0,
+          Container(
+            width: 150.0,
+            child: Image.asset(
+              'assets/img/logo.png',
+              fit: BoxFit.contain,
+            ),
           ),
-          const CircleAvatar(
-            radius: 30.0,
-            backgroundImage: AssetImage('assets/img/avatar.png'),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Collors.white,
+                width: 1.5,
+              ),
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            child: const CircleAvatar(
+              radius: 25.0,
+              backgroundImage: AssetImage(
+                'assets/img/avatar.png',
+              ),
+            ),
           ),
         ],
       ),
@@ -55,64 +77,35 @@ class HomePage extends StatelessWidget {
 
   Widget _body(BuildContext context) {
     var sizeAppBar = MediaQuery.of(context).size.height * 0.15;
-    var size = sizeAppBar + MediaQuery.of(context).size.height * 0.10;
-    return Column(
-      children: [
-        Carousel(
-          height: size,
-          width: MediaQuery.of(context).size.width,
-        ),
-        WidgetArea(
-          title: Center(
-            child: Text(
-              'Pesquisa de Serviços',
-              style: TextStyle(
-                color: Collors.greyDark,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+    var size = sizeAppBar + MediaQuery.of(context).size.height * 0.25;
+    return Container(
+      padding: const EdgeInsets.only(bottom: 20.0),
+      child: Column(
+        children: [
+          Carousel(
+            height: size,
+            width: MediaQuery.of(context).size.width,
           ),
-          padding: const EdgeInsets.all(20.0),
-          child: _searchTextField(),
-        ),
-        WidgetArea(
-          title: Text(
-            'Serviços disponíveis',
-            style: TextStyle(
-              color: Collors.greyDark,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
+          WidgetArea(
+            title: 'Pesquisa de Serviços',
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: _searchTextField(),
           ),
-          padding: const EdgeInsets.only(left: 20.0),
-          child: _listServices(),
-        ),
-        WidgetArea(
-          title: Text(
-            'Os melhores profissionais',
-            style: TextStyle(
-              color: Collors.greyDark,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
+          WidgetArea(
+            title: 'Serviços disponíveis',
+            child: _listServices(),
           ),
-          padding: const EdgeInsets.only(top: 20.0, left: 20.0),
-          child: _listBestProfessionals(),
-        ),
-        WidgetArea(
-          title: Text(
-            'Empresas mais pesquisadas',
-            style: TextStyle(
-              color: Collors.greyDark,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
+          WidgetArea(
+            title: 'Os melhores profissionais',
+            child: _listBestProfessionals(),
           ),
-          padding: const EdgeInsets.all(20.0),
-          child: _listBestCompanies(),
-        ),
-      ],
+          WidgetArea(
+            title: 'Empresas mais pesquisadas',
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: _listBestCompanies(),
+          ),
+        ],
+      ),
     );
   }
 
@@ -120,19 +113,23 @@ class HomePage extends StatelessWidget {
     return SizedBox(
       height: 55.0,
       child: TextFormField(
-        decoration: const InputDecoration(
-          prefix: SizedBox(width: 20.0),
+        decoration: InputDecoration(
+          prefix: const SizedBox(width: 20.0),
           filled: true,
           fillColor: Colors.white,
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
           ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+            borderSide: BorderSide(color: Collors.greyLight),
+          ),
           hintText: 'Ex: eletricista, mecânico, pedreiro ...',
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             height: 1.0,
             color: Colors.grey,
           ),
-          suffixIcon: Padding(
+          suffixIcon: const Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: Icon(Icons.search),
           ),
@@ -148,6 +145,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ServiceCategory(
+            firstItem: true,
             title: 'Barbearia',
             icon: Icon(
               Icons.cut_rounded,
@@ -202,6 +200,7 @@ class HomePage extends StatelessWidget {
             borderColor: Collors.purple,
           ),
           const ServiceCategory(
+            lastItem: true,
             title: 'Ver mais',
             icon: Icon(Icons.add),
           ),
@@ -215,34 +214,41 @@ class HomePage extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Card(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: 20.0),
+            child: const Card(
+              elevation: 0,
+              color: Colors.white,
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 150.0),
+                child: Text('Teste'),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10.0),
+          const Card(
             elevation: 0,
             color: Colors.white,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
+              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 150.0),
               child: Text('Teste'),
             ),
           ),
-          SizedBox(width: 10.0),
-          Card(
-            elevation: 0,
-            color: Colors.white,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
-              child: Text('Teste'),
+          const SizedBox(width: 10.0),
+          Container(
+            margin: const EdgeInsets.only(right: 20.0),
+            child: const Card(
+              elevation: 0,
+              color: Colors.white,
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 150.0),
+                child: Text('Teste'),
+              ),
             ),
           ),
-          SizedBox(width: 10.0),
-          Card(
-            elevation: 0,
-            color: Colors.white,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
-              child: Text('Teste'),
-            ),
-          ),
-          SizedBox(width: 10.0),
         ],
       ),
     );
