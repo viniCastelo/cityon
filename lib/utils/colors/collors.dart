@@ -7,12 +7,14 @@ class Collors {
   static Color white = Colors.white;
   static Color greyDark = const Color.fromRGBO(64, 64, 64, 1);
   static Color greyLight = const Color.fromRGBO(208, 206, 206, 1);
+  static Color dividerColor = const Color.fromRGBO(226, 228, 236, 1);
 
   static Color redAccent = const Color.fromRGBO(255, 204, 204, 1);
   static Color orangeAccent = const Color.fromRGBO(251, 229, 214, 1);
   static Color yellowAccent = const Color.fromRGBO(255, 242, 204, 1);
   static Color greenAccent = const Color.fromRGBO(226, 240, 217, 1);
   static Color blueAccent = const Color.fromRGBO(218, 227, 243, 1);
+  static Color blueMediumAccent = const Color.fromRGBO(218, 227, 243, 0.5);
   static Color purpleAccent = const Color.fromRGBO(237, 226, 246, 1);
 
   static Color red = const Color.fromRGBO(234, 67, 53, 1);

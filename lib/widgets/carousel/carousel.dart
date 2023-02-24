@@ -58,7 +58,32 @@ class Carousel extends StatelessWidget {
             ],
           ),
           Image.asset(
-            'assets/img/mechanic_banner.png',
+            'assets/img/banner_teste_00.png',
+            fit: BoxFit.fill,
+            width: width!,
+          ),
+          Image.asset(
+            'assets/img/banner_teste_01.png',
+            fit: BoxFit.fill,
+            width: width!,
+          ),
+          Image.asset(
+            'assets/img/banner_teste_02.png',
+            fit: BoxFit.fill,
+            width: width!,
+          ),
+          Image.asset(
+            'assets/img/banner_teste_03.png',
+            fit: BoxFit.fill,
+            width: width!,
+          ),
+          Image.asset(
+            'assets/img/banner_teste_04.png',
+            fit: BoxFit.fill,
+            width: width!,
+          ),
+          Image.asset(
+            'assets/img/banner_teste_05.png',
             fit: BoxFit.fill,
             width: width!,
           ),

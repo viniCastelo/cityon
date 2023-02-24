@@ -2,6 +2,8 @@
 
 import 'package:cityon/utils/colors/collors.dart';
 import 'package:cityon/widgets/carousel/carousel.dart';
+import 'package:cityon/widgets/companies_card/company_card.dart';
+import 'package:cityon/widgets/professionals_card/professional_card.dart';
 import 'package:cityon/widgets/service_category/service_category.dart';
 import 'package:cityon/widgets/widget_area/widget_area.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,6 @@ class HomePage extends StatelessWidget {
         child: _appBar(context),
       ),
       body: SingleChildScrollView(
-        reverse: true,
         child: _body(context),
       ),
     );
@@ -32,24 +33,13 @@ class HomePage extends StatelessWidget {
         bottom: 10.0,
         left: 20.0,
       ),
-      decoration: BoxDecoration(
-        color: Collors.blue,
-        /*
-        boxShadow: [
-          BoxShadow(
-            color: Collors.blue,
-            spreadRadius: 1.5,
-            blurRadius: 8.0,
-          ),
-        ],
-        */
-      ),
+      decoration: BoxDecoration(color: Collors.blue),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 150.0,
+            width: 125.0,
             child: Image.asset(
               'assets/img/logo.png',
               fit: BoxFit.contain,
@@ -64,7 +54,7 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(30.0),
             ),
             child: const CircleAvatar(
-              radius: 25.0,
+              radius: 20.0,
               backgroundImage: AssetImage(
                 'assets/img/avatar.png',
               ),
@@ -95,9 +85,23 @@ class HomePage extends StatelessWidget {
             title: 'Serviços disponíveis',
             child: _listServices(),
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Divider(
+              color: Collors.dividerColor,
+              thickness: 1.8,
+            ),
+          ),
           WidgetArea(
             title: 'Os melhores profissionais',
             child: _listBestProfessionals(),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Divider(
+              color: Collors.dividerColor,
+              thickness: 1.8,
+            ),
           ),
           WidgetArea(
             title: 'Empresas mais pesquisadas',
@@ -215,39 +219,29 @@ class HomePage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            margin: const EdgeInsets.only(left: 20.0),
-            child: const Card(
-              elevation: 0,
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 150.0),
-                child: Text('Teste'),
-              ),
-            ),
+          const ProfessionalCard(
+            countReviews: 219,
+            name: 'Pedro Sebastião',
+            reviews: 5.0,
+            serviceCategory: 'Mecânico',
+            verifiedAccount: true,
           ),
-          const SizedBox(width: 10.0),
-          const Card(
-            elevation: 0,
-            color: Colors.white,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 150.0),
-              child: Text('Teste'),
-            ),
+          ProfessionalCard(
+            colorAvatar: Collors.red,
+            countReviews: 138,
+            name: 'Caio Oliveira',
+            reviews: 5.0,
+            serviceCategory: 'Cabeleireiro',
+            verifiedAccount: true,
           ),
-          const SizedBox(width: 10.0),
-          Container(
-            margin: const EdgeInsets.only(right: 20.0),
-            child: const Card(
-              elevation: 0,
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 150.0),
-                child: Text('Teste'),
-              ),
-            ),
+          ProfessionalCard(
+            colorAvatar: Collors.yellow,
+            countReviews: 102,
+            name: 'Ruan Fabrício',
+            reviews: 5.0,
+            serviceCategory: 'Contabilidade',
+            verifiedAccount: true,
+            isLast: true,
           ),
         ],
       ),
@@ -259,44 +253,81 @@ class HomePage extends StatelessWidget {
       scrollDirection: Axis.vertical,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width: double.maxFinite,
-            child: const Card(
-              elevation: 0,
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
-                child: Text('Teste'),
-              ),
-            ),
+        children: const [
+          CompanyCard(
+            name: 'Bitdata Tecnologia',
+            category: 'Acessórios e informática',
+            verifiedAccount: true,
+            stringLogo: "assets/img/logo_empresa_00.png",
           ),
-          const SizedBox(height: 10.0),
-          Container(
-            width: double.maxFinite,
-            child: const Card(
-              elevation: 0,
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
-                child: Text('Teste'),
-              ),
-            ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Pão Caseiro',
+            category: 'Panificadora',
+            stringLogo: "assets/img/logo_empresa_01.png",
+            verifiedAccount: true,
           ),
-          const SizedBox(height: 10.0),
-          Container(
-            width: double.maxFinite,
-            child: const Card(
-              elevation: 0,
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 50.0, horizontal: 100.0),
-                child: Text('Teste'),
-              ),
-            ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'São José Artes',
+            category: 'Gráfica',
+            stringLogo: "assets/img/logo_empresa_02.png",
+            verifiedAccount: true,
+          ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Ribeirão Construções',
+            category: 'Construção',
+            stringLogo: "assets/img/logo_empresa_03.png",
+            verifiedAccount: true,
+          ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Empresa Teste',
+            category: 'Teste',
+            verifiedAccount: true,
+          ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Empresa Teste',
+            category: 'Teste',
+            verifiedAccount: true,
+          ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Empresa Teste',
+            category: 'Teste',
+            verifiedAccount: true,
+          ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Empresa Teste',
+            category: 'Teste',
+            verifiedAccount: true,
+          ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Empresa Teste',
+            category: 'Teste',
+            verifiedAccount: true,
+          ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Empresa Teste',
+            category: 'Teste',
+            verifiedAccount: true,
+          ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Empresa Teste',
+            category: 'Teste',
+            verifiedAccount: true,
+          ),
+          SizedBox(height: 20.0),
+          CompanyCard(
+            name: 'Empresa Teste',
+            category: 'Teste',
+            verifiedAccount: true,
           ),
         ],
       ),
