@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
           ),
           suffixIcon: const Padding(
             padding: EdgeInsets.only(right: 20.0),
-            child: Icon(Icons.search),
+            child: Icon(Icons.mic),
           ),
         ),
       ),
